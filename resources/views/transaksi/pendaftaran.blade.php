@@ -1,5 +1,5 @@
 <x-app-layout>
-<div x-data="{ isOpen: false }" class="flex">
+    <div x-data="{ isOpen: false }" class="flex">
         <!-- Sidebar -->
         <div :class="isOpen ? 'w-64' : 'w-16'" class="bg-gray-800 text-white h-screen transition-all duration-300">
             <div class="p-4 flex items-center justify-between">
@@ -45,16 +45,42 @@
                 </li>
             </ul>
         </div>
-                <!-- Main Content -->
-                <div class="flex-1 py-12 px-6">
+
+        <!-- Main Content -->
+        <div class="flex-1 py-12 px-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        {{ __("PENDAFTARAN") }}
+                        <h2 class="text-2xl font-bold mb-6">Pendaftaran Pasien</h2>
+                        <form action="{{ url('/transaksi/daftar-pasien') }}" method="POST">
+                            @csrf
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="nama" class="block text-sm font-medium text-gray-700">Nama Pasien</label>
+                                    <input type="text" name="nama" id="nama" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                </div>
+                                <div>
+                                    <label for="umur" class="block text-sm font-medium text-gray-700">Umur</label>
+                                    <input type="number" name="umur" id="umur" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                </div>
+                                <div>
+                                    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
+                                    <input type="text" name="alamat" id="alamat" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                </div>
+                                <div>
+                                    <label for="keluhan" class="block text-sm font-medium text-gray-700">Keluhan</label>
+                                    <textarea name="keluhan" id="keluhan" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                                    Daftar Pasien
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        </div>
-        </x-app-layout>
+    </div>
+</x-app-layout>

@@ -1,5 +1,5 @@
 <x-app-layout>
-<div x-data="{ isOpen: false }" class="flex">
+    <div x-data="{ isOpen: false }" class="flex">
         <!-- Sidebar -->
         <div :class="isOpen ? 'w-64' : 'w-16'" class="bg-gray-800 text-white h-screen transition-all duration-300">
             <div class="p-4 flex items-center justify-between">
@@ -45,16 +45,36 @@
                 </li>
             </ul>
         </div>
-                <!-- Main Content -->
-                <div class="flex-1 py-12 px-6">
+        
+        <!-- Main Content -->
+        <div class="flex-1 py-12 px-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        {{ __("PEMBAYARAN") }}
+                        <h2 class="text-xl font-bold mb-4">Pembayaran Obat</h2>
+                        <form action="{{ url('/pembayaran') }}" method="POST">
+                            @csrf
+                            <div class="mb-4">
+                                <label for="patient_name" class="block text-sm font-medium text-gray-700">Nama Pasien</label>
+                                <input type="text" name="patient_name" id="patient_name" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div class="mb-4">
+                                <label for="medication" class="block text-sm font-medium text-gray-700">Nama Obat</label>
+                                <input type="text" name="medication" id="medication" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div class="mb-4">
+                                <label for="amount" class="block text-sm font-medium text-gray-700">Jumlah</label>
+                                <input type="number" name="amount" id="amount" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div class="mb-4">
+                                <label for="total" class="block text-sm font-medium text-gray-700">Total Bayar</label>
+                                <input type="text" name="total" id="total" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Bayar</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        </div>
-        </x-app-layout>
+    </div>
+</x-app-layout>
